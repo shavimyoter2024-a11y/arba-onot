@@ -55,7 +55,7 @@
     .lockup .shavim { height: 56px; width: auto; }
     .lockup .x {
       display: flex; flex-direction: column; align-items: center;
-      font-size: 12px; color: var(--muted); letter-spacing: .02em;
+      font-size: 13px; color: var(--muted); letter-spacing: .02em;
     }
     .lockup .x::before {
       content: ""; width: 1px; height: 18px; background: var(--line); margin-bottom: 4px;
@@ -271,6 +271,9 @@
     a:focus-visible, summary:focus-visible, input:focus-visible { outline: 3px solid var(--bronze); outline-offset: 2px; }
     .legal-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-bottom: 16px; font-size: 14px; }
     .legal-nav a, .consent a, .trust a { color: var(--bronze-ink); }
+    .legal-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+    h1, h2, h3, .lead, .sec-head p, .step p, .check p { text-wrap: balance; }
+    .faq p, .consent span, footer p, .success p { text-wrap: pretty; }
     .consent.opt { margin-top: -8px; }
 
 
@@ -279,7 +282,6 @@
       .steps { grid-template-columns: repeat(3, 1fr); }
     }
     @media (min-width: 960px) {
-      .lockup { justify-content: flex-start; }
       .hero { padding: 80px 0 88px; }
       .hero-grid { grid-template-columns: 1.1fr .9fr; gap: 64px; }
       .hero-copy { text-align: right; }
