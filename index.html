@@ -151,7 +151,7 @@
       outline: none; border-color: var(--bronze); box-shadow: 0 0 0 4px rgba(167, 138, 109, .18);
     }
     .field.bad input, .field.bad select { border-color: #c0392b; }
-    .field input[type="tel"] { direction: ltr; text-align: right; }
+    .field input[type="tel"], .field input[type="email"] { direction: ltr; text-align: right; }
     .consent {
       display: flex; gap: 12px; align-items: flex-start;
       font-size: 14px; color: var(--muted); line-height: 1.5; margin: 8px 0 24px;
@@ -374,7 +374,7 @@
           <div class="step reveal">
             <div class="num">1</div>
             <h3>משאירים פרטים</h3>
-            <p>שם וטלפון, זה כל מה שצריך.</p>
+            <p>שם, טלפון ומייל, וזהו.</p>
           </div>
           <div class="step reveal">
             <div class="num">2</div>
@@ -445,7 +445,7 @@
         <img class="arba" src="assets/arba-onot-logo.svg" alt="ארבע עונות תכנון פיננסי מבית IBI" width="101" height="34" />
       </div>
       <p>הפגישה ניתנת על ידי ארבע עונות תכנון פיננסי מבית IBI. המידע בדף הוא כללי ואינו מהווה ייעוץ או שיווק פנסיוני המותאם לך. הפרטים שתשאירו יועברו לארבע עונות לצורך תיאום הפגישה בלבד.</p>
-      <nav class="legal-nav" aria-label="מסמכים"><a href="terms.html">תנאי ההטבה</a><a href="privacy.html">מדיניות פרטיות</a><a href="accessibility.html">הצהרת נגישות</a></nav>
+      <nav class="legal-nav" aria-label="מסמכים"><a href="terms.html">תנאי שימוש</a><a href="privacy.html">מדיניות פרטיות</a><a href="accessibility.html">הצהרת נגישות</a></nav>
       <p>© שווים יותר ר.מ.י.ד בע"מ</p>
     </div>
   </footer>
@@ -466,7 +466,11 @@
           <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-1234567" required />
         </div>
         <div class="field">
-          <label>גיל <span class="opt">(לא חובה, עוזר למתכנן להתכונן)</span></label>
+          <label>מייל</label>
+          <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@mail.com" dir="ltr" required />
+        </div>
+        <div class="field">
+          <label>גיל <span class="opt">(לא חובה)</span></label>
           <select name="age">
             <option value="">בחירת טווח גיל</option>
             <option>עד 29</option>
@@ -478,15 +482,14 @@
         <div class="hp" aria-hidden="true"><input name="hp_website" tabindex="-1" autocomplete="off" /></div>
         <label class="consent">
           <input type="checkbox" name="consent" aria-required="true" />
-          <span>מאשרים לנציג מארבע עונות ושווים יותר לחזור אליי לתיאום הפגישה, לפי <a href="terms.html" target="_blank">תנאי ההטבה</a> ו<a href="privacy.html" target="_blank">מדיניות הפרטיות</a>.</span>
+          <span>מאשרים לנציג מארבע עונות ושווים יותר לחזור אליי לתיאום הפגישה, לפי <a href="terms.html" target="_blank">תנאי השימוש</a> ו<a href="privacy.html" target="_blank">מדיניות הפרטיות</a>.</span>
         </label>
         <label class="consent opt">
           <input type="checkbox" name="marketing" />
-          <span>אשמח לקבל עדכונים והטבות משווים יותר (לא חובה).</span>
+          <span>אשמח לקבל עדכונים והטבות משווים יותר.</span>
         </label>
         <button class="btn block" type="submit">קבעו לי פגישה</button>
         <p class="form-msg" role="status" aria-live="polite"></p>
-        <p class="trust">אין חובה חוקית למסור פרטים. הם נשמרים אצל שווים יותר ומועברים לארבע עונות לתיאום הפגישה.</p>
       </form>
       <div class="success" hidden tabindex="-1">
         <div class="icon"><svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -567,6 +570,7 @@
           var checks = [
             [form.full_name, name.length >= 2],
             [form.phone, /^0\d{8,9}$/.test(phone)],
+            [form.email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val("email"))],
             [form.consent, form.consent.checked]
           ];
           var firstBad = null;
@@ -574,6 +578,7 @@
           if (firstBad) {
             msg.classList.add("err");
             msg.textContent = firstBad === form.phone ? "מספר הטלפון לא תקין. לדוגמה: 050-1234567"
+                            : firstBad === form.email ? "כתובת המייל לא תקינה. לדוגמה: name@mail.com"
                             : firstBad === form.consent ? "צריך לאשר שנחזור אליך כדי לתאם את הפגישה."
                             : "נא למלא שם מלא.";
             firstBad.focus();
@@ -589,6 +594,7 @@
             product: "פגישת אפיון פיננסית - ארבע עונות",
             full_name: name,
             phone: phone,
+            email: val("email").toLowerCase(),
             age: val("age"),
             consent: "כן",
             marketing_consent: form.marketing.checked ? "כן" : "לא",
