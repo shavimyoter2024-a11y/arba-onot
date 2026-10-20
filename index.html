@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>פגישת אפיון פיננסית ללא עלות | שווים יותר בשיתוף ארבע עונות</title>
+  <meta name="description" content="לחברי שווים יותר: פגישה אישית עם מתכנן פיננסי מוסמך מארבע עונות מבית IBI. בודקים פנסיה, קרן השתלמות, ביטוחים והטבות מס. ללא עלות וללא התחייבות." />
+  <meta name="robots" content="noindex" />
+  <meta property="og:title" content="פגישת אפיון פיננסית ללא עלות" />
+  <meta property="og:description" content="שווים יותר בשיתוף ארבע עונות מבית IBI. מתכנן פיננסי מוסמך עובר איתך על הפנסיה, ההשתלמות והביטוחים." />
+  <meta property="og:image" content="assets/shavim-logo.jpg" />
+  <link rel="icon" href="assets/shavim-logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #273142;
+      --navy-deep: #1b2330;
+      --bronze: #a78a6d;
+      --bronze-soft: #c9b39b;
+      --bronze-tint: #f3ece4;
+      --bronze-ink: #7a6249;
+      --bronze-btn: #86694e;
+      --olive: #3c4f1e;
+      --cream: #faf8f5;
+      --ink: #273142;
+      --muted: #5d6573;
+      --line: #e6e0d8;
+      --white: #ffffff;
+      --radius: 16px;
+      --shadow: 0 24px 56px -28px rgba(27, 35, 48, .35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans Hebrew", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+    /* ── header lockup ── */
+    .topbar { background: var(--white); border-bottom: 1px solid var(--line); }
+    .lockup {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      padding: 12px 0;
+    }
+    .lockup .shavim { height: 56px; width: auto; }
+    .lockup .x {
+      display: flex; flex-direction: column; align-items: center;
+      font-size: 12px; color: var(--muted); letter-spacing: .02em;
+    }
+    .lockup .x::before {
+      content: ""; width: 1px; height: 18px; background: var(--line); margin-bottom: 4px;
+    }
+    .lockup .x::after {
+      content: ""; width: 1px; height: 18px; background: var(--line); margin-top: 4px;
+    }
+    .lockup .arba { height: 44px; width: auto; }
+
+    /* ── hero ── */
+    .hero {
+      position: relative; isolation: isolate;
+      background: var(--navy-deep);
+      color: var(--white);
+      padding: 48px 0 56px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -20% auto auto; width: 720px; height: 720px;
+      background: radial-gradient(closest-side, rgba(167, 138, 109, .28), transparent 70%);
+      z-index: -1;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: auto auto -50% -25%; width: 640px; height: 640px;
+      background: radial-gradient(closest-side, rgba(60, 79, 30, .15), transparent 70%);
+      z-index: -1;
+    }
+    .hero-grid { display: grid; gap: 40px; align-items: center; }
+    .hero-copy { text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 16px; border-radius: 999px;
+      border: 1px solid rgba(201, 179, 155, .45);
+      color: var(--bronze-soft); font-size: 14px; font-weight: 500;
+    }
+    .hero h1 {
+      margin: 24px 0 0;
+      font-size: clamp(34px, 7.5vw, 58px); line-height: 1.12; font-weight: 700;
+      letter-spacing: -.01em;
+    }
+    .hero h1 .free {
+      display: table; margin: 16px auto 0; padding: 0 16px 4px;
+      background: var(--bronze); color: var(--white); border-radius: 8px;
+    }
+    @media (min-width: 960px) { .hero h1 .free { margin-inline: 0; } }
+    .hero .lead {
+      margin: 16px auto 0; max-width: 520px;
+      font-size: clamp(17px, 2.4vw, 19px); color: rgba(255, 255, 255, .9); font-weight: 400;
+    }
+    .hero-points {
+      list-style: none; padding: 0; margin: 32px auto 0;
+      display: grid; gap: 8px; max-width: 360px; text-align: right;
+    }
+    .hero-points li { display: flex; gap: 12px; align-items: center; font-size: 16px; }
+    .tick {
+      flex: none; width: 24px; height: 24px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: rgba(167, 138, 109, .22); color: var(--bronze-soft);
+    }
+    .tick svg { width: 14px; height: 14px; }
+
+    /* ── buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 56px; padding: 0 32px; border-radius: 12px; border: 0;
+      background: var(--bronze-btn); color: var(--white);
+      font: inherit; font-size: 18px; font-weight: 600; text-decoration: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .btn:hover { background: #73593f; transform: translateY(-1px); }
+    .btn:focus-visible { outline: 3px solid var(--bronze-soft); outline-offset: 3px; }
+    .btn[disabled] { opacity: .6; cursor: wait; transform: none; }
+    .btn.block { width: 100%; }
+
+    /* ── form card ── */
+    .form-card {
+      background: var(--white); color: var(--ink);
+      border-radius: 20px; padding: 32px 24px; box-shadow: var(--shadow);
+    }
+    .form-card h2 { margin: 0; font-size: 24px; line-height: 1.3; text-align: center; }
+    .form-card .sub { margin: 8px 0 24px; text-align: center; color: var(--muted); font-size: 15px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-weight: 500; font-size: 15px; margin-bottom: 8px; }
+    .field label .opt { color: var(--muted); font-weight: 400; font-size: 13px; }
+    .field input, .field select {
+      width: 100%; min-height: 52px; padding: 0 16px;
+      border: 1.5px solid var(--line); border-radius: 12px; background: var(--white);
+      font: inherit; font-size: 17px; color: var(--ink);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235d6573' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 16px center; padding-left: 40px; }
+    .field input:focus, .field select:focus {
+      outline: none; border-color: var(--bronze); box-shadow: 0 0 0 4px rgba(167, 138, 109, .18);
+    }
+    .field.bad input, .field.bad select { border-color: #c0392b; }
+    .field input[type="tel"] { direction: ltr; text-align: right; }
+    .consent {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; color: var(--muted); line-height: 1.5; margin: 8px 0 24px;
+    }
+    .consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--bronze); }
+    .consent.bad { color: #c0392b; }
+    .form-msg { min-height: 24px; margin: 8px 0 0; text-align: center; font-size: 15px; }
+    .form-msg.err { color: #c0392b; }
+    .trust { margin: 0; text-align: center; font-size: 13px; color: var(--muted); }
+    .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; pointer-events: none; }
+    .form-card { position: relative; }
+    .success { text-align: center; padding: 16px 0; }
+    .success .icon {
+      width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%;
+      display: grid; place-items: center; background: var(--bronze-tint); color: var(--bronze);
+    }
+    .success h3 { margin: 0 0 8px; font-size: 24px; }
+    .success p { margin: 0; color: var(--muted); }
+
+    /* ── sections ── */
+    section.block { padding: 72px 0; }
+    .sec-head { text-align: center; max-width: 600px; margin: 0 auto 40px; }
+    .sec-head .kicker { display: block; color: var(--bronze-ink); font-weight: 600; font-size: 15px; }
+    .sec-head h2 { margin: 8px 0 0; font-size: clamp(28px, 5vw, 38px); line-height: 1.2; }
+    .sec-head p { margin: 12px 0 0; color: var(--muted); font-size: 17px; }
+
+    .checks { display: grid; gap: 16px; }
+    .check {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; text-align: center;
+    }
+    .check .ico {
+      width: 48px; height: 48px; margin: 0 auto 16px; border-radius: 12px;
+      display: grid; place-items: center; background: var(--bronze-tint); color: var(--bronze);
+    }
+    .check .ico svg { width: 24px; height: 24px; }
+    @media (max-width: 719px) {
+      .checks { gap: 12px; }
+      .check {
+        display: grid; grid-template-columns: 48px 1fr; column-gap: 16px;
+        text-align: right; padding: 24px;
+      }
+      .check .ico { grid-row: span 2; margin: 0; }
+      .check p { margin-top: 4px; }
+    }
+    .check h3 { margin: 0; font-size: 19px; }
+    .check p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+
+    .steps-sec { background: var(--white); }
+    .steps { display: grid; gap: 24px; counter-reset: step; }
+    .step { text-align: center; padding: 8px 16px; }
+    .step .num {
+      width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--navy); color: var(--white); font-size: 24px; font-weight: 600;
+    }
+    .step h3 { margin: 0; font-size: 20px; }
+    .step p { margin: 8px auto 0; color: var(--muted); font-size: 16px; max-width: 300px; }
+
+    .about { background: var(--navy-deep); color: var(--white); }
+    .about .sec-head h2 { color: var(--white); }
+    .about .sec-head p { color: rgba(255, 255, 255, .75); }
+    .about .sec-head .kicker { color: var(--bronze-soft); }
+    .about-logo { height: 48px; width: auto; margin: 0 auto 24px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+    .stat b {
+      display: block; font-size: clamp(30px, 7vw, 46px); line-height: 1.1; font-weight: 600;
+      color: var(--bronze-soft);
+    }
+    .stat span { display: block; margin-top: 8px; font-size: clamp(13px, 2.6vw, 16px); color: rgba(255, 255, 255, .78); }
+
+    .faq { max-width: 720px; margin: 0 auto; }
+    .faq details {
+      background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+      margin-bottom: 12px; padding: 0 20px;
+    }
+    .faq summary {
+      list-style: none; cursor: pointer; padding: 16px 0;
+      font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; gap: 16px; align-items: center;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+"; flex: none; font-size: 24px; font-weight: 300; color: var(--bronze); line-height: 1;
+      transition: transform .2s;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details p { margin: 0 0 18px; color: var(--muted); }
+
+    .final { padding: 72px 0 88px; }
+    .final .form-card { max-width: 480px; margin: 0 auto; }
+
+    footer {
+      background: var(--white); border-top: 1px solid var(--line);
+      padding: 32px 0 96px; text-align: center; font-size: 13px; color: var(--muted);
+    }
+    footer .lockup { padding: 0 0 16px; }
+    footer .lockup .shavim { height: 44px; }
+    footer .lockup .arba { height: 34px; }
+    footer p { max-width: 720px; margin: 0 auto 8px; }
+
+    /* sticky mobile CTA */
+    .sticky-cta {
+      position: fixed; inset: auto 0 0 0; z-index: 20;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, .96); backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      transform: translateY(110%); transition: transform .3s;
+    }
+    .sticky-cta.show { transform: none; }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+    .skip { position: absolute; inset-inline-start: 16px; top: -64px; z-index: 30; background: var(--navy); color: var(--white); padding: 8px 16px; border-radius: 8px; }
+    .skip:focus { top: 16px; }
+    a:focus-visible, summary:focus-visible, input:focus-visible { outline: 3px solid var(--bronze); outline-offset: 2px; }
+    .legal-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-bottom: 16px; font-size: 14px; }
+    .legal-nav a, .consent a, .trust a { color: var(--bronze-ink); }
+    .consent.opt { margin-top: -8px; }
+
+
+    @media (min-width: 720px) {
+      .checks { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .lockup { justify-content: flex-start; }
+      .hero { padding: 80px 0 88px; }
+      .hero-grid { grid-template-columns: 1.1fr .9fr; gap: 64px; }
+      .hero-copy { text-align: right; }
+      .hero .lead { margin-inline: 0; }
+      .hero-points { margin-inline: 0; }
+      .checks { grid-template-columns: repeat(3, 1fr); }
+      .check { text-align: right; }
+      .check .ico { margin-inline: 0; }
+      .sticky-cta { display: none; }
+      footer { padding-bottom: 40px; }
+      footer .lockup { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#top">דילוג לתוכן</a>
+
+  <header class="topbar">
+    <div class="wrap lockup">
+      <img class="shavim" src="assets/shavim-logo.jpg" alt="שווים יותר" width="56" height="56" />
+      <span class="x">בשיתוף</span>
+      <img class="arba" src="assets/arba-onot-logo.svg" alt="ארבע עונות תכנון פיננסי מבית IBI" width="131" height="44" />
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">בלעדי לחברי קהילת שווים יותר</span>
+          <h1>פגישת אפיון פיננסית<span class="free">ללא עלות</span></h1>
+          <p class="lead">מתכנן פיננסי מוסמך עובר איתך על הפנסיה, קרן ההשתלמות והביטוחים, ועושה לך סדר בכל התמונה.</p>
+          <ul class="hero-points">
+            <li><span class="tick"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>פגישה אישית, בזום או פנים מול פנים</li>
+            <li><span class="tick"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>ללא עלות וללא התחייבות</li>
+            <li><span class="tick"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>מתכנן בעל רישיון משרד האוצר</li>
+          </ul>
+        </div>
+        <div class="hero-form" data-form-slot="hero"></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">מה בודקים בפגישה</span>
+          <h2>כל החיסכון שלך, במבט אחד</h2>
+          <p>רוב האנשים לא יודעים כמה הם משלמים ולאן הכסף שלהם הולך. בפגישה עושים סדר.</p>
+        </div>
+        <div class="checks">
+          <article class="check reveal">
+            <div class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+            <h3>דמי ניהול</h3>
+            <p>כמה משלמים היום, והאם אפשר לשלם פחות על אותו חיסכון.</p>
+          </article>
+          <article class="check reveal">
+            <div class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></div>
+            <h3>מסלולי השקעה</h3>
+            <p>האם המסלול שלך מתאים לגיל, למטרות ולרמת הסיכון שנוחה לך.</p>
+          </article>
+          <article class="check reveal">
+            <div class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>ביטוחים כפולים</h3>
+            <p>איתור ביטוחים שמשלמים עליהם פעמיים, וכיסויים שחסרים.</p>
+          </article>
+          <article class="check reveal">
+            <div class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <h3>כספים שנשכחו</h3>
+            <p>קופות ישנות ממקומות עבודה קודמים, שאפשר לאחד ולנהל טוב יותר.</p>
+          </article>
+          <article class="check reveal">
+            <div class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+            <h3>הטבות מס</h3>
+            <p>זיכויים והחזרים שמגיעים לפי החוק ועדיין לא מומשו.</p>
+          </article>
+          <article class="check reveal">
+            <div class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12"/><path d="M7 2c0 5 10 5 10 10S7 17 7 22"/><path d="M17 2c0 5-10 5-10 10s10 5 10 10"/></svg></div>
+            <h3>תכנון לפרישה</h3>
+            <p>כמה צפוי להיות לך בפרישה, ומה אפשר לשפר כבר עכשיו.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block steps-sec">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">איך זה עובד</span>
+          <h2>שלושה צעדים פשוטים</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="num">1</div>
+            <h3>משאירים פרטים</h3>
+            <p>שם וטלפון, זה כל מה שצריך.</p>
+          </div>
+          <div class="step reveal">
+            <div class="num">2</div>
+            <h3>מתאמים מועד</h3>
+            <p>מתכנן מארבע עונות חוזר אליך לקבוע פגישה בזמן שנוח לך.</p>
+          </div>
+          <div class="step reveal">
+            <div class="num">3</div>
+            <h3>מקבלים תמונה מלאה</h3>
+            <p>מקבלים תמונת מצב והמלצות, וההחלטה נשארת אצלך.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block about">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <img class="about-logo" src="assets/arba-onot-logo-white.svg" alt="ארבע עונות" width="143" height="48" />
+          <h2>מי יושב איתך בפגישה</h2>
+          <p>ארבע עונות מבית IBI, חברה לתכנון פיננסי ופנסיוני הפועלת מאז 2014 בפריסה ארצית.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><b>56</b><span>מיליארד ₪ בפיקוח</span></div>
+          <div class="stat"><b>+320</b><span>מתכננים מוסמכים</span></div>
+          <div class="stat"><b>+100</b><span>אלף לקוחות</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">שאלות נפוצות</span>
+          <h2>לפני שקובעים</h2>
+        </div>
+        <div class="faq reveal">
+          <details>
+            <summary>הפגישה באמת ללא עלות?</summary>
+            <p>כן. הפגישה ניתנת ללא עלות לחברי קהילת שווים יותר, במסגרת שיתוף הפעולה עם ארבע עונות.</p>
+          </details>
+          <details>
+            <summary>צריך להתחייב למשהו?</summary>
+            <p>לא. מקבלים תמונת מצב והמלצות, ומה לעשות איתן זו החלטה שלך בלבד.</p>
+          </details>
+          <details>
+            <summary>צריך להכין משהו לפגישה?</summary>
+            <p>לא חייבים. המתכנן יסביר בשיחת התיאום איך להוציא את המידע על החסכונות שלך מאתר הר הכסף, כדי שהפגישה תהיה מדויקת.</p>
+          </details>
+          <details>
+            <summary>כמה זמן לוקחת הפגישה?</summary>
+            <p>בדרך כלל כשעה. אפשר בזום מהבית או פנים מול פנים.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" id="register">
+      <div class="wrap" data-form-slot="final"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="lockup">
+        <img class="shavim" src="assets/shavim-logo.jpg" alt="שווים יותר" width="44" height="44" />
+        <span class="x">בשיתוף</span>
+        <img class="arba" src="assets/arba-onot-logo.svg" alt="ארבע עונות תכנון פיננסי מבית IBI" width="101" height="34" />
+      </div>
+      <p>הפגישה ניתנת על ידי ארבע עונות תכנון פיננסי מבית IBI. המידע בדף הוא כללי ואינו מהווה ייעוץ או שיווק פנסיוני המותאם לך. הפרטים שתשאירו יועברו לארבע עונות לצורך תיאום הפגישה בלבד.</p>
+      <nav class="legal-nav" aria-label="מסמכים"><a href="terms.html">תנאי ההטבה</a><a href="privacy.html">מדיניות פרטיות</a><a href="accessibility.html">הצהרת נגישות</a></nav>
+      <p>© שווים יותר ר.מ.י.ד בע"מ</p>
+    </div>
+  </footer>
+
+  <div class="sticky-cta" id="stickyCta"><a class="btn block" href="#register">לתיאום פגישה ללא עלות</a></div>
+
+  <template id="formTpl">
+    <div class="form-card">
+      <form novalidate>
+        <h2>לתיאום פגישה ללא עלות</h2>
+        <p class="sub">משאירים פרטים ומתכנן חוזר אליך</p>
+        <div class="field">
+          <label>שם מלא</label>
+          <input name="full_name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label>טלפון</label>
+          <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-1234567" required />
+        </div>
+        <div class="field">
+          <label>גיל <span class="opt">(לא חובה, עוזר למתכנן להתכונן)</span></label>
+          <select name="age">
+            <option value="">בחירת טווח גיל</option>
+            <option>עד 29</option>
+            <option>30 עד 44</option>
+            <option>45 עד 59</option>
+            <option>60 ומעלה</option>
+          </select>
+        </div>
+        <div class="hp" aria-hidden="true"><input name="hp_website" tabindex="-1" autocomplete="off" /></div>
+        <label class="consent">
+          <input type="checkbox" name="consent" aria-required="true" />
+          <span>מאשרים לנציג מארבע עונות ושווים יותר לחזור אליי לתיאום הפגישה, לפי <a href="terms.html" target="_blank">תנאי ההטבה</a> ו<a href="privacy.html" target="_blank">מדיניות הפרטיות</a>.</span>
+        </label>
+        <label class="consent opt">
+          <input type="checkbox" name="marketing" />
+          <span>אשמח לקבל עדכונים והטבות משווים יותר (לא חובה).</span>
+        </label>
+        <button class="btn block" type="submit">קבעו לי פגישה</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+        <p class="trust">אין חובה חוקית למסור פרטים. הם נשמרים אצל שווים יותר ומועברים לארבע עונות לתיאום הפגישה.</p>
+      </form>
+      <div class="success" hidden tabindex="-1">
+        <div class="icon"><svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>הפרטים התקבלו</h3>
+        <p>מתכנן מארבע עונות יחזור אליך בימים הקרובים לתיאום הפגישה.</p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+      // ═══ טופס → Make ═══
+      // תרחיש Make 10007745 "ארבע עונות - לידים מדף הנחיתה" (hook 4450163): פיירברי (מוצר תכנון פיננסי) + גיליון משותף.
+      var FORM_WEBHOOK_URL = "https://hook.eu2.make.com/4uxid5uc9vfu41sk6jwy85exju74ihup";
+      var PAGE_ID = "arba-onot";
+      var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === "file:";
+
+      // ייחוס מפיץ: utm_source/utm_medium מהכתובת, גם אחרי # וגם בקיצור source/medium
+      var utm = { source: "", medium: "", campaign: "" };
+      try {
+        var qs = new URLSearchParams(location.search);
+        var hq = (location.hash.split("?")[1] || "");
+        if (hq) new URLSearchParams(hq).forEach(function (v, k) { if (!qs.has(k)) qs.set(k, v); });
+        utm.source = (qs.get("utm_source") || qs.get("source") || "").slice(0, 60);
+        utm.medium = (qs.get("utm_medium") || qs.get("medium") || "").slice(0, 60);
+        utm.campaign = (qs.get("utm_campaign") || "").slice(0, 80);
+      } catch (e) {}
+
+      var tpl = document.getElementById("formTpl");
+      var startedAt = Date.now();
+      var cards = [];
+
+      document.querySelectorAll("[data-form-slot]").forEach(function (slot) {
+        var node = tpl.content.cloneNode(true);
+        slot.appendChild(node);
+        var card = slot.querySelector(".form-card");
+        cards.push(card);
+        wire(card, slot.getAttribute("data-form-slot"));
+      });
+
+      function showSuccess() {
+        cards.forEach(function (c) {
+          c.querySelector("form").hidden = true;
+          c.querySelector(".success").hidden = false;
+        });
+      }
+
+      function wire(card, slotName) {
+        var form = card.querySelector("form");
+        var msg = card.querySelector(".form-msg");
+        var btn = card.querySelector("button[type=submit]");
+        var success = card.querySelector(".success");
+        msg.id = slotName + "-msg";
+
+        // תוויות נגישות: מזהה ייחודי לכל עותק של הטופס
+        form.querySelectorAll(".field").forEach(function (f, i) {
+          var input = f.querySelector("input, select");
+          var id = slotName + "-f" + i;
+          input.id = id;
+          f.querySelector("label").setAttribute("for", id);
+        });
+
+        var mark = function (el, bad) {
+          var wrap = el.closest(".field") || el.closest(".consent");
+          if (wrap) wrap.classList.toggle("bad", bad);
+          el.setAttribute("aria-invalid", bad ? "true" : "false");
+          if (bad) el.setAttribute("aria-describedby", msg.id); else el.removeAttribute("aria-describedby");
+        };
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          msg.classList.remove("err");
+          msg.textContent = "";
+          var val = function (n) { return (form[n] && form[n].value || "").trim(); };
+          var phone = val("phone").replace(/[\s\-().]/g, "").replace(/^\+?972/, "0");
+          var name = val("full_name");
+
+          var checks = [
+            [form.full_name, name.length >= 2],
+            [form.phone, /^0\d{8,9}$/.test(phone)],
+            [form.consent, form.consent.checked]
+          ];
+          var firstBad = null;
+          checks.forEach(function (c) { mark(c[0], !c[1]); if (!c[1] && !firstBad) firstBad = c[0]; });
+          if (firstBad) {
+            msg.classList.add("err");
+            msg.textContent = firstBad === form.phone ? "מספר הטלפון לא תקין. לדוגמה: 050-1234567"
+                            : firstBad === form.consent ? "צריך לאשר שנחזור אליך כדי לתאם את הפגישה."
+                            : "נא למלא שם מלא.";
+            firstBad.focus();
+            return;
+          }
+
+          // מלכודות ספאם: שדה נסתר ומילוי מהיר מדי, מעמידים פנים שהצליח
+          if (val("hp_website") || Date.now() - startedAt < 2500) { showSuccess(); return; }
+
+          var payload = {
+            type: "lead",
+            page: PAGE_ID,
+            product: "פגישת אפיון פיננסית - ארבע עונות",
+            full_name: name,
+            phone: phone,
+            age: val("age"),
+            consent: "כן",
+            marketing_consent: form.marketing.checked ? "כן" : "לא",
+            utm_source: utm.source,
+            utm_medium: utm.medium,
+            utm_campaign: utm.campaign,
+            landing_page: location.href.slice(0, 500),
+            referrer: (document.referrer || "").slice(0, 500),
+            client_time: new Date().toISOString()
+          };
+
+          if (!FORM_WEBHOOK_URL) {
+            if (isLocal) { console.info("[lead:dev] אין webhook, הליד לא נשלח:", payload); showSuccess(); return; }
+            msg.classList.add("err");
+            msg.textContent = "הטופס עדיין לא פעיל. אפשר לפנות אלינו בוואטסאפ 058-792-9195.";
+            return;
+          }
+
+          btn.disabled = true;
+          msg.textContent = "שולחים…";
+          // no-cors מצליח על כל תשובה, גם שגיאה. אימות אמיתי = הרצת בדיקה מקצה לקצה לפני עלייה לאוויר.
+          fetch(FORM_WEBHOOK_URL, {
+            method: "POST", mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(payload).toString()
+          }).then(function () {
+            showSuccess();
+            try { success.focus({ preventScroll: true }); } catch (e3) {}
+            success.scrollIntoView({ behavior: "smooth", block: "center" });
+          }).catch(function () {
+            btn.disabled = false;
+            msg.classList.add("err");
+            msg.textContent = "משהו השתבש בשליחה. נסו שוב בעוד רגע.";
+          });
+        });
+      }
+
+      // הופעה בגלילה
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+      }, { threshold: .15 });
+      document.querySelectorAll(".reveal").forEach(function (el, i) {
+        el.style.transitionDelay = (i % 3) * 80 + "ms";
+        io.observe(el);
+      });
+
+      // כפתור צף במובייל: מופיע אחרי ההירו, נעלם ליד הטופס
+      var sticky = document.getElementById("stickyCta");
+      var hero = document.querySelector(".hero");
+      var reg = document.getElementById("register");
+      var heroOut = false, regIn = false;
+      var upd = function () { sticky.classList.toggle("show", heroOut && !regIn); };
+      new IntersectionObserver(function (e) { heroOut = !e[0].isIntersecting; upd(); }).observe(hero);
+      new IntersectionObserver(function (e) { regIn = e[0].isIntersecting; upd(); }).observe(reg);
+    })();
+  </script>
+</body>
+</html>
