@@ -484,7 +484,7 @@
         <div class="hp" aria-hidden="true"><input name="hp_website" tabindex="-1" autocomplete="off" /></div>
         <label class="consent">
           <input type="checkbox" name="consent" aria-required="true" />
-          <span>מאשרים לנציג מארבע עונות ושווים יותר לחזור אליי לתיאום הפגישה, לפי <a href="terms.html" target="_blank">תנאי השימוש</a> ו<a href="privacy.html" target="_blank">מדיניות הפרטיות</a>.</span>
+          <span>אני מאשר/ת שקראתי והבנתי את <a href="privacy.html" target="_blank">מדיניות הפרטיות</a> ואת <a href="terms.html" target="_blank">תנאי השימוש</a> באתר ואני מסכים/ה לכל התנאים.</span>
         </label>
         <label class="consent opt">
           <input type="checkbox" name="marketing" />
@@ -581,7 +581,7 @@
             msg.classList.add("err");
             msg.textContent = firstBad === form.phone ? "מספר הטלפון לא תקין. לדוגמה: 050-1234567"
                             : firstBad === form.email ? "כתובת המייל לא תקינה. לדוגמה: name@mail.com"
-                            : firstBad === form.consent ? "צריך לאשר שנחזור אליך כדי לתאם את הפגישה."
+                            : firstBad === form.consent ? "כדי להמשיך צריך לאשר את מדיניות הפרטיות ותנאי השימוש."
                             : "נא למלא שם מלא.";
             firstBad.focus();
             return;
