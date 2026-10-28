@@ -506,6 +506,8 @@
       // ═══ טופס → Make ═══
       // תרחיש Make 10007745 "ארבע עונות - לידים מדף הנחיתה" (hook 4450163): פיירברי (מוצר תכנון פיננסי) + גיליון משותף.
       var FORM_WEBHOOK_URL = "https://hook.eu2.make.com/4uxid5uc9vfu41sk6jwy85exju74ihup";
+      // זאפייר של ארבע עונות (→ סיילספורס), בבקשת המטמיע שלהם 28/10. נשלח במקביל ולא חוסם את הליד אצלנו.
+      var PARTNER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/9112984/49bajjb/";
       var PAGE_ID = "arba-onot";
       var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === "file:";
 
@@ -617,6 +619,13 @@
 
           btn.disabled = true;
           msg.textContent = "שולחים…";
+          if (PARTNER_WEBHOOK_URL) {
+            fetch(PARTNER_WEBHOOK_URL, {
+              method: "POST", mode: "no-cors", keepalive: true,
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(Object.assign({ lead_source: "shavim-yoter-landing", submitted_at: payload.client_time }, payload)).toString()
+            }).catch(function () {});
+          }
           // no-cors מצליח על כל תשובה, גם שגיאה. אימות אמיתי = הרצת בדיקה מקצה לקצה לפני עלייה לאוויר.
           fetch(FORM_WEBHOOK_URL, {
             method: "POST", mode: "no-cors",
