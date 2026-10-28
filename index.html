@@ -619,18 +619,24 @@
 
           btn.disabled = true;
           msg.textContent = "שולחים…";
-          if (PARTNER_WEBHOOK_URL) {
-            fetch(PARTNER_WEBHOOK_URL, {
-              method: "POST", mode: "no-cors", keepalive: true,
+          var post = function (url, data, ms) {
+            var ctl = window.AbortController ? new AbortController() : null;
+            var t = ctl && setTimeout(function () { ctl.abort(); }, ms);
+            return fetch(url, {
+              method: "POST", keepalive: true, signal: ctl ? ctl.signal : undefined,
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: new URLSearchParams(Object.assign({ lead_source: "shavim-yoter-landing", submitted_at: payload.client_time }, payload)).toString()
-            }).catch(function () {});
-          }
-          // no-cors מצליח על כל תשובה, גם שגיאה. אימות אמיתי = הרצת בדיקה מקצה לקצה לפני עלייה לאוויר.
-          fetch(FORM_WEBHOOK_URL, {
-            method: "POST", mode: "no-cors",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(payload).toString()
+              body: new URLSearchParams(data).toString()
+            }).finally(function () { clearTimeout(t); });
+          };
+          // קודם זאפייר: התוצאה נשלחת ל-Make בשדה partner_status, ומשם התראה אם לא הגיע
+          var partner = !PARTNER_WEBHOOK_URL ? Promise.resolve("off") :
+            post(PARTNER_WEBHOOK_URL, Object.assign({ lead_source: "shavim-yoter-landing", submitted_at: payload.client_time }, payload), 6000)
+              .then(function (r) { return r.ok ? r.json().then(function (j) { return j.status === "success" ? "success" : "failed: " + (j.status || "unknown"); }) : "failed: HTTP " + r.status; })
+              .catch(function (e) { return "failed: " + (e && e.name === "AbortError" ? "timeout" : "network"); });
+          partner.then(function (st) {
+            payload.partner_status = st;
+            var toMake = function () { return post(FORM_WEBHOOK_URL, payload, 10000).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); }); };
+            return toMake().catch(function () { return toMake(); });
           }).then(function () {
             showSuccess();
             try { success.focus({ preventScroll: true }); } catch (e3) {}
@@ -638,7 +644,7 @@
           }).catch(function () {
             btn.disabled = false;
             msg.classList.add("err");
-            msg.textContent = "משהו השתבש בשליחה. נסו שוב בעוד רגע.";
+            msg.textContent = "משהו השתבש בשליחה. נסו שוב בעוד רגע, או כתבו לנו בוואטסאפ 058-792-9195.";
           });
         });
       }
