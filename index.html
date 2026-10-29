@@ -522,6 +522,24 @@
         utm.campaign = (qs.get("utm_campaign") || "").slice(0, 80);
       } catch (e) {}
 
+      // ═══ כניסה מדיוור וואטסאפ ═══
+      // הקישור בתבנית נושא את מזהה איש הקשר בפיירברי (c). הכניסה מדווחת למייק (hook 4474697),
+      // ושם נוצרת התעניינות לשווים יותר אם לא הושארו פרטים תוך 10 דקות. דיווח מהדפדפן בלבד,
+      // כך שסורקי הקישורים של וואטסאפ לא נספרים.
+      var VISIT_WEBHOOK_URL = "https://hook.eu2.make.com/7jcmkhd2fpvwkenegbvdi28ofcyq8xo0";
+      var fbContact = "";
+      try { fbContact = new URLSearchParams(location.search).get("c") || ""; } catch (e) {}
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(fbContact)) fbContact = "";
+      if (fbContact && !isLocal) {
+        try {
+          fetch(VISIT_WEBHOOK_URL, {
+            method: "POST", mode: "no-cors", keepalive: true,
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ fb_contact_id: fbContact, utm_campaign: utm.campaign, page: PAGE_ID, client_time: new Date().toISOString() }).toString()
+          });
+        } catch (e) {}
+      }
+
       var tpl = document.getElementById("formTpl");
       var startedAt = Date.now();
       var cards = [];
