@@ -163,6 +163,30 @@
     .trust { margin: 0; text-align: center; font-size: 13px; color: var(--muted); }
     .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; pointer-events: none; }
     .form-card { position: relative; }
+    /* ── שלב ראשון בטלפון בלבד: בחירת נושא בלחיצה, ואז השדות (08/11). במחשב הטופס כמו קודם ── */
+    .topic { border: 0; margin: 0 0 8px; padding: 0; min-width: 0; }
+    .topic legend { display: block; width: 100%; padding: 0; margin: 0 0 12px; text-align: center; font-weight: 600; font-size: 17px; }
+    .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .key {
+      min-height: 56px; padding: 8px 10px; border-radius: 12px;
+      border: 1.5px solid var(--line); border-bottom-width: 4px; border-bottom-color: #d6cdc1;
+      background: var(--cream); color: var(--ink);
+      font: inherit; font-size: 16px; font-weight: 600; cursor: pointer;
+      transition: transform .08s, border-color .15s, background .15s;
+    }
+    .key.wide { grid-column: 1 / -1; }
+    .key:hover { border-color: var(--bronze-soft); border-bottom-color: var(--bronze-soft); }
+    .key:active { transform: translateY(2px); border-bottom-width: 2px; margin-bottom: 2px; }
+    .key:focus-visible { outline: 3px solid var(--bronze-soft); outline-offset: 2px; }
+    .key[aria-pressed="true"] {
+      background: var(--bronze-btn); border-color: var(--bronze-btn); border-bottom-color: #5f4936; color: var(--white);
+      transform: translateY(2px); border-bottom-width: 2px; margin-bottom: 2px;
+    }
+    .step2 { padding-top: 20px; margin-top: 12px; border-top: 1px solid var(--line); }
+    @media (min-width: 720px) {
+      .topic { display: none; }
+      .step2, .step2[hidden] { display: block; padding-top: 0; margin-top: 0; border-top: 0; }
+    }
     .success { text-align: center; padding: 16px 0; }
     .success .icon {
       width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%;
@@ -459,6 +483,17 @@
       <form novalidate>
         <h2>לתיאום פגישה ללא עלות</h2>
         <p class="sub">משאירים פרטים ומתכנן חוזר אליך</p>
+        <fieldset class="topic">
+          <legend>מה הכי חשוב לך לבדוק?</legend>
+          <div class="topic-grid">
+            <button type="button" class="key" data-topic="דמי ניהול">דמי ניהול</button>
+            <button type="button" class="key" data-topic="ביטוחים כפולים">ביטוחים כפולים</button>
+            <button type="button" class="key" data-topic="כספים שנשכחו">כספים שנשכחו</button>
+            <button type="button" class="key" data-topic="תכנון לפרישה">תכנון לפרישה</button>
+            <button type="button" class="key wide" data-topic="את הכל">את הכל</button>
+          </div>
+        </fieldset>
+        <div class="step2" hidden>
         <div class="field">
           <label>שם מלא</label>
           <input name="full_name" type="text" autocomplete="name" required />
@@ -492,6 +527,7 @@
         </label>
         <button class="btn block" type="submit">קבעו לי פגישה</button>
         <p class="form-msg" role="status" aria-live="polite"></p>
+        </div>
       </form>
       <div class="success" hidden tabindex="-1">
         <div class="icon"><svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -574,6 +610,26 @@
           f.querySelector("label").setAttribute("for", id);
         });
 
+        // שלב ראשון (בטלפון בלבד, במחשב מוסתר ב-CSS): לחיצה על נושא פותחת את השדות ומסמנת אותו בשני הטפסים.
+        // נמדד ב-GA כ-topic_select, הנושא בפרמטר section (מימד רשום), כדי לראות כמה מתחילים.
+        var step2 = form.querySelector(".step2");
+        form.querySelectorAll(".key").forEach(function (k) {
+          k.setAttribute("aria-pressed", "false");
+          k.addEventListener("click", function () {
+            var t = k.getAttribute("data-topic");
+            cards.forEach(function (c) {
+              c.querySelectorAll(".key").forEach(function (o) { o.setAttribute("aria-pressed", o.getAttribute("data-topic") === t ? "true" : "false"); });
+              c.querySelector("form").dataset.topic = t;
+            });
+            try { if (window.gtag) window.gtag("event", "topic_select", { page_id: PAGE_ID, section: t, form: slotName }); } catch (e) {}
+            if (step2.hidden) {
+              step2.hidden = false;
+              var r = form.querySelector(".topic").getBoundingClientRect();
+              window.scrollTo({ top: window.scrollY + r.top - 100, behavior: "instant" });
+            }
+          });
+        });
+
         var mark = function (el, bad) {
           var wrap = el.closest(".field") || el.closest(".consent");
           if (wrap) wrap.classList.toggle("bad", bad);
@@ -618,6 +674,7 @@
             phone: phone,
             email: val("email").toLowerCase(),
             age: val("age"),
+            topic: form.dataset.topic || "",
             consent: "כן",
             marketing_consent: form.marketing.checked ? "כן" : "לא",
             utm_source: utm.source,
