@@ -116,6 +116,13 @@
       background: rgba(167, 138, 109, .22); color: var(--bronze-soft);
     }
     .tick svg { width: 14px; height: 14px; }
+    /* 12/11 טום: בטלפון 64% יצאו מהמסך הראשון. מורידים את הפסקה ושלוש השורות כדי שהכפתורים של הטופס ייראו בלי לגלול */
+    @media (max-width: 959px) {
+      .hero { padding: 20px 0 24px; }
+      .hero h1 { margin-top: 14px; }
+      .hero .lead, .hero-points { display: none; }
+      .hero-grid { gap: 16px; }
+    }
 
     /* ── buttons ── */
     .btn {
