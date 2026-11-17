@@ -170,7 +170,7 @@
     .trust { margin: 0; text-align: center; font-size: 13px; color: var(--muted); }
     .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; pointer-events: none; }
     .form-card { position: relative; }
-    /* ── שלב ראשון בטלפון בלבד: בחירת נושא בלחיצה, ואז השדות (08/11). במחשב הטופס כמו קודם ── */
+    /* ── שלב ראשון: בחירת נושא בלחיצה, ואז השדות (טלפון מ-08/11, מחשב מ-17/11) ── */
     .topic { border: 0; margin: 0 0 8px; padding: 0; min-width: 0; }
     .topic legend { display: block; width: 100%; padding: 0; margin: 0 0 12px; text-align: center; font-weight: 600; font-size: 17px; }
     .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -190,10 +190,6 @@
       transform: translateY(2px); border-bottom-width: 2px; margin-bottom: 2px;
     }
     .step2 { padding-top: 20px; margin-top: 12px; border-top: 1px solid var(--line); }
-    @media (min-width: 720px) {
-      .topic { display: none; }
-      .step2, .step2[hidden] { display: block; padding-top: 0; margin-top: 0; border-top: 0; }
-    }
     .success { text-align: center; padding: 16px 0; }
     .success .icon {
       width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%;
@@ -617,7 +613,7 @@
           f.querySelector("label").setAttribute("for", id);
         });
 
-        // שלב ראשון (בטלפון בלבד, במחשב מוסתר ב-CSS): לחיצה על נושא פותחת את השדות ומסמנת אותו בשני הטפסים.
+        // שלב ראשון (בטלפון ובמחשב): לחיצה על נושא פותחת את השדות ומסמנת אותו בשני הטפסים.
         // נמדד ב-GA כ-topic_select, הנושא בפרמטר section (מימד רשום), כדי לראות כמה מתחילים.
         var step2 = form.querySelector(".step2");
         form.querySelectorAll(".key").forEach(function (k) {
